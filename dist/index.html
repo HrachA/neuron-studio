@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f5fa"><title>Neuron Studio · Neural network playground</title>
+  <link rel="stylesheet" href="style.css"><script defer src="model.js"></script><script defer src="app.js"></script>
+</head>
+<body>
+  <header><div class="bar"><a class="brand" href="./" aria-label="Neuron Studio home"><span class="mark"><i></i><i></i><i></i><i></i></span>Neuron Studio</a><button class="guide" id="guide"><span aria-hidden="true">?</span> Quick guide</button></div></header>
+  <main>
+    <section class="intro"><div><h1>Neural network playground</h1><p>Train a small network and watch it learn to separate two classes of points.</p></div><div class="actions"><button id="reset" title="Reset training"><b aria-hidden="true">↺</b> Reset</button><button class="primary" id="train"><span id="playicon" aria-hidden="true">▶</span><span id="playlabel">Start training</span></button></div></section>
+    <div class="workspace">
+      <section class="card architecture"><div class="panelhead"><h2>Network architecture</h2><span class="status" id="status">Ready</span></div>
+      <div class="diagram"><svg id="network" viewBox="0 0 640 290" role="img" aria-label="Two input neurons, two hidden layers and one output neuron"></svg></div>
+      <div class="legend"><span><i class="line violet"></i> Positive weight</span><span><i class="line teal"></i> Negative weight</span></div></section>
+      <section class="card boundary"><div class="panelhead"><h2>Decision boundary</h2></div><canvas width="360" height="360" id="map" aria-label="Prediction regions and labeled training points"></canvas><div class="legend"><span><i class="dot violet"></i> Class A</span><span><i class="dot teal"></i> Class B</span></div></section>
+      <section class="card settings"><div class="panelhead"><h2>Experiment settings</h2></div><fieldset><legend>Dataset</legend><div class="datasets" id="datasets"></div></fieldset><div class="selects"><label>Learning rate<select id="rate"><option>0.01</option><option selected>0.03</option><option>0.1</option></select></label><label>Activation<select id="activation"><option value="tanh">Tanh</option><option value="relu">ReLU</option></select></label></div></section>
+      <section class="card progress"><div class="panelhead"><h2>Training progress</h2></div><dl><div><dt>Epoch</dt><dd id="epoch">0</dd></div><div><dt>Accuracy</dt><dd id="accuracy">—</dd></div><div><dt>Loss</dt><dd id="loss">—</dd></div></dl><canvas id="history" width="540" height="95" aria-label="Training loss over epochs"></canvas><div class="chartlabel"><span><i class="line violet"></i> Training loss</span><span>Epochs</span></div></section>
+    </div>
+  </main>
+  <dialog id="help"><h2>Quick guide</h2><p>Choose a dataset and press <strong>Start training</strong>. Each epoch is one pass through all 160 points.</p><p>The network takes a point’s x and y coordinates and predicts its class. Thicker connections carry larger weights. Purple weights are positive and teal weights are negative.</p><p>The dots show the true classes. The background shows the network’s prediction at each location. Watch the regions change as training loss falls.</p><p>Try a different learning rate while training. Changing the dataset or activation starts a fresh experiment.</p><form method="dialog"><button class="primary">Got it</button></form></dialog>
+</body></html>
